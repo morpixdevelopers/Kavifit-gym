@@ -1,12 +1,10 @@
-import { Dumbbell } from 'lucide-react';
-import * as React from 'react';
+import * as React from "react";
 
 interface HeroProps {
   onJoinClick: () => void;
-  onResultsClick: () => void;
 }
 
-export default function Hero({ onJoinClick, onResultsClick }: HeroProps) {
+export default function Hero({ onJoinClick }: HeroProps) {
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=1920')] bg-cover bg-center bg-fixed">
@@ -22,7 +20,8 @@ export default function Hero({ onJoinClick, onResultsClick }: HeroProps) {
         </h1>
 
         <p className="text-xl md:text-2xl lg:text-3xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed font-semibold">
-          Push your limits. Break your barriers. Become the strongest version of yourself.
+          Push your limits. Break your barriers. Become the strongest version of
+          yourself.
         </p>
 
         <button
@@ -31,7 +30,9 @@ export default function Hero({ onJoinClick, onResultsClick }: HeroProps) {
         >
           <span className="relative z-10 flex items-center gap-3">
             START FREE TRIAL
-            <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
+            <span className="group-hover:translate-x-2 transition-transform duration-300">
+              →
+            </span>
           </span>
           <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </button>
@@ -42,80 +43,81 @@ export default function Hero({ onJoinClick, onResultsClick }: HeroProps) {
 
 const transformationImages = [
   {
-    url: 'https://images.pexels.com/photos/3478098/pexels-photo-3478098.jpeg?auto=compress&cs=tinysrgb&w=600',
-    title: 'Body Transformation',
-    duration: '3 months',
+    url: "https://images.pexels.com/photos/3478098/pexels-photo-3478098.jpeg?auto=compress&cs=tinysrgb&w=600",
+    title: "Body Transformation",
+    duration: "3 months",
   },
   {
-    url: 'https://images.pexels.com/photos/3550632/pexels-photo-3550632.jpeg?auto=compress&cs=tinysrgb&w=600',
-    title: 'Muscle Building',
-    duration: '4 months',
+    url: "https://images.pexels.com/photos/3550632/pexels-photo-3550632.jpeg?auto=compress&cs=tinysrgb&w=600",
+    title: "Muscle Building",
+    duration: "4 months",
   },
   {
-    url: 'https://images.pexels.com/photos/3762800/pexels-photo-3762800.jpeg?auto=compress&cs=tinysrgb&w=600',
-    title: 'Weight Loss',
-    duration: '5 months',
+    url: "https://images.pexels.com/photos/3762800/pexels-photo-3762800.jpeg?auto=compress&cs=tinysrgb&w=600",
+    title: "Weight Loss",
+    duration: "5 months",
   },
   {
-    url: 'https://images.pexels.com/photos/4164830/pexels-photo-4164830.jpeg?auto=compress&cs=tinysrgb&w=600',
-    title: 'Strength Gains',
-    duration: '3 months',
+    url: "https://images.pexels.com/photos/4164830/pexels-photo-4164830.jpeg?auto=compress&cs=tinysrgb&w=600",
+    title: "Strength Gains",
+    duration: "3 months",
   },
   {
-    url: 'https://images.pexels.com/photos/3557369/pexels-photo-3557369.jpeg?auto=compress&cs=tinysrgb&w=600',
-    title: 'Fitness Goals',
-    duration: '6 months',
+    url: "https://images.pexels.com/photos/3557369/pexels-photo-3557369.jpeg?auto=compress&cs=tinysrgb&w=600",
+    title: "Fitness Goals",
+    duration: "6 months",
   },
 ];
 
-interface TransformationGalleryProps {
-  onViewAllClick?: () => void;
-}
-
 const memberReviews = [
   {
-    name: 'Rajesh Kumar',
-    role: 'Software Engineer',
-    text: 'The trainers here are absolutely amazing! I lost 15kg in 3 months and gained so much strength. Highly recommended!',
-    image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+    name: "Rajesh Kumar",
+    role: "Software Engineer",
+    text: "The trainers here are absolutely amazing! I lost 15kg in 3 months and gained so much strength. Highly recommended!",
+    image:
+      "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
     rating: 5,
     transformation: transformationImages[0],
   },
   {
-    name: 'Priya Sharma',
-    role: 'Marketing Manager',
-    text: 'Best gym in the city! The facilities are top-notch and the atmosphere is so motivating. Been a member for 2 years!',
-    image: 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+    name: "Priya Sharma",
+    role: "Marketing Manager",
+    text: "Best gym in the city! The facilities are top-notch and the atmosphere is so motivating. Been a member for 2 years!",
+    image:
+      "https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
     rating: 5,
     transformation: transformationImages[1],
   },
   {
-    name: 'Arjun Singh',
-    role: 'Entrepreneur',
-    text: 'Transformed my body completely! The personal training program is worth every penny. Amazing results in 6 months.',
-    image: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+    name: "Arjun Singh",
+    role: "Entrepreneur",
+    text: "Transformed my body completely! The personal training program is worth every penny. Amazing results in 6 months.",
+    image:
+      "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
     rating: 5,
     transformation: transformationImages[2],
   },
   {
-    name: 'Neha Patel',
-    role: 'Fitness Enthusiast',
-    text: 'Never felt this confident before! The team is supportive and the equipment is world-class. 10/10 experience!',
-    image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+    name: "Neha Patel",
+    role: "Fitness Enthusiast",
+    text: "Never felt this confident before! The team is supportive and the equipment is world-class. 10/10 experience!",
+    image:
+      "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
     rating: 5,
     transformation: transformationImages[3],
   },
   {
-    name: 'Vikram Mehta',
-    role: 'Business Analyst',
-    text: 'Incredible transformation! Lost 20kg and built lean muscle. The support system here is unmatched.',
-    image: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+    name: "Vikram Mehta",
+    role: "Business Analyst",
+    text: "Incredible transformation! Lost 20kg and built lean muscle. The support system here is unmatched.",
+    image:
+      "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
     rating: 5,
     transformation: transformationImages[4],
   },
 ];
 
-export function TransformationGallery({ onViewAllClick }: TransformationGalleryProps) {
+export function TransformationGallery() {
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
   const nextTransformation = () => {
@@ -123,13 +125,18 @@ export function TransformationGallery({ onViewAllClick }: TransformationGalleryP
   };
 
   const prevTransformation = () => {
-    setCurrentIndex((prev) => (prev - 1 + memberReviews.length) % memberReviews.length);
+    setCurrentIndex(
+      (prev) => (prev - 1 + memberReviews.length) % memberReviews.length
+    );
   };
 
   const currentMember = memberReviews[currentIndex];
 
   return (
-    <section id="transformation" className="py-20 px-6 bg-gradient-to-b from-slate-900 via-slate-800/50 to-slate-900">
+    <section
+      id="transformation"
+      className="py-20 px-6 bg-gradient-to-b from-slate-900 via-slate-800/50 to-slate-900"
+    >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-4">
@@ -154,8 +161,12 @@ export function TransformationGallery({ onViewAllClick }: TransformationGalleryP
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
               <div className="absolute bottom-0 left-0 right-0 p-8">
-                <h3 className="text-white text-2xl font-bold mb-2">{currentMember.transformation.title}</h3>
-                <p className="text-orange-400 text-base font-semibold">Transformation Period: {currentMember.transformation.duration}</p>
+                <h3 className="text-white text-2xl font-bold mb-2">
+                  {currentMember.transformation.title}
+                </h3>
+                <p className="text-orange-400 text-base font-semibold">
+                  Transformation Period: {currentMember.transformation.duration}
+                </p>
               </div>
             </div>
           </div>
@@ -169,18 +180,26 @@ export function TransformationGallery({ onViewAllClick }: TransformationGalleryP
                 className="w-20 h-20 rounded-full object-cover border-3 border-orange-500"
               />
               <div>
-                <h3 className="text-2xl font-black text-white mb-2">{currentMember.name}</h3>
-                <p className="text-orange-400 font-bold text-base mb-3">{currentMember.role}</p>
+                <h3 className="text-2xl font-black text-white mb-2">
+                  {currentMember.name}
+                </h3>
+                <p className="text-orange-400 font-bold text-base mb-3">
+                  {currentMember.role}
+                </p>
                 <div className="flex gap-1">
                   {Array.from({ length: currentMember.rating }).map((_, i) => (
-                    <span key={i} className="text-xl">⭐</span>
+                    <span key={i} className="text-xl">
+                      ⭐
+                    </span>
                   ))}
                 </div>
               </div>
             </div>
 
             <div className="relative">
-              <div className="absolute -top-4 -left-4 text-orange-500/20 text-6xl font-black">"</div>
+              <div className="absolute -top-4 -left-4 text-orange-500/20 text-6xl font-black">
+                "
+              </div>
               <p className="text-lg md:text-xl text-gray-300 leading-relaxed italic relative z-10">
                 "{currentMember.text}"
               </p>
@@ -195,8 +214,18 @@ export function TransformationGallery({ onViewAllClick }: TransformationGalleryP
             className="p-4 bg-orange-500 hover:bg-orange-600 text-white rounded-full transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg"
             aria-label="Previous transformation"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
             </svg>
           </button>
 
@@ -206,7 +235,9 @@ export function TransformationGallery({ onViewAllClick }: TransformationGalleryP
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
                 className={`h-3 rounded-full transition-all duration-300 ${
-                  idx === currentIndex ? 'w-12 bg-orange-500' : 'w-3 bg-gray-600 hover:bg-gray-500'
+                  idx === currentIndex
+                    ? "w-12 bg-orange-500"
+                    : "w-3 bg-gray-600 hover:bg-gray-500"
                 }`}
                 aria-label={`Go to transformation ${idx + 1}`}
               />
@@ -218,8 +249,18 @@ export function TransformationGallery({ onViewAllClick }: TransformationGalleryP
             className="p-4 bg-orange-500 hover:bg-orange-600 text-white rounded-full transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg"
             aria-label="Next transformation"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
             </svg>
           </button>
         </div>
@@ -236,67 +277,78 @@ export function TransformationGallery({ onViewAllClick }: TransformationGalleryP
 
 const testimonials = [
   {
-    name: 'Rajesh Kumar',
-    role: 'Software Engineer',
-    text: 'The trainers here are absolutely amazing! I lost 15kg in 3 months and gained so much strength. Highly recommended!',
-    image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+    name: "Rajesh Kumar",
+    role: "Software Engineer",
+    text: "The trainers here are absolutely amazing! I lost 15kg in 3 months and gained so much strength. Highly recommended!",
+    image:
+      "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
     rating: 5,
   },
   {
-    name: 'Priya Sharma',
-    role: 'Marketing Manager',
-    text: 'Best gym in the city! The facilities are top-notch and the atmosphere is so motivating. Been a member for 2 years!',
-    image: 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+    name: "Priya Sharma",
+    role: "Marketing Manager",
+    text: "Best gym in the city! The facilities are top-notch and the atmosphere is so motivating. Been a member for 2 years!",
+    image:
+      "https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
     rating: 5,
   },
   {
-    name: 'Arjun Singh',
-    role: 'Entrepreneur',
-    text: 'Transformed my body completely! The personal training program is worth every penny. Amazing results in 6 months.',
-    image: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+    name: "Arjun Singh",
+    role: "Entrepreneur",
+    text: "Transformed my body completely! The personal training program is worth every penny. Amazing results in 6 months.",
+    image:
+      "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
     rating: 5,
   },
   {
-    name: 'Neha Patel',
-    role: 'Fitness Enthusiast',
-    text: 'Never felt this confident before! The team is supportive and the equipment is world-class. 10/10 experience!',
-    image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+    name: "Neha Patel",
+    role: "Fitness Enthusiast",
+    text: "Never felt this confident before! The team is supportive and the equipment is world-class. 10/10 experience!",
+    image:
+      "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
     rating: 5,
   },
 ];
 
 const whyChooseUsFeatures = [
   {
-    icon: '⚡',
-    title: 'Premium Equipment',
-    description: 'State-of-the-art fitness equipment from leading brands. 100+ machines and tools for every workout goal.',
+    icon: "⚡",
+    title: "Premium Equipment",
+    description:
+      "State-of-the-art fitness equipment from leading brands. 100+ machines and tools for every workout goal.",
   },
   {
-    icon: '👨‍🏫',
-    title: 'Expert Trainers',
-    description: 'Certified and experienced trainers with personalized programs. Available for one-on-one guidance.',
+    icon: "👨‍🏫",
+    title: "Expert Trainers",
+    description:
+      "Certified and experienced trainers with personalized programs. Available for one-on-one guidance.",
   },
   {
-    icon: '🎯',
-    title: 'Results Guaranteed',
-    description: 'Proven track record with 500+ successful transformations. Join our community and achieve your goals.',
+    icon: "🎯",
+    title: "Results Guaranteed",
+    description:
+      "Proven track record with 500+ successful transformations. Join our community and achieve your goals.",
   },
   {
-    icon: '💪',
-    title: '24/7 Access',
-    description: 'Train anytime that suits you. Our facility is open round the clock for your convenience.',
+    icon: "💪",
+    title: "24/7 Access",
+    description:
+      "Train anytime that suits you. Our facility is open round the clock for your convenience.",
   },
 ];
 
 export function WhyChooseUs() {
   return (
-    <section id="why-choose-us" className="py-20 px-6 bg-gradient-to-b from-slate-900 to-slate-800">
+    <section
+      id="why-choose-us"
+      className="py-20 px-6 bg-gradient-to-b from-slate-900 to-slate-800"
+    >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-4">
             WHY CHOOSE
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">
-              IRON FITNESS
+              Kavifit unisex gym
             </span>
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
@@ -316,8 +368,12 @@ export function WhyChooseUs() {
                   {feature.icon}
                 </div>
                 <div>
-                  <h3 className="text-2xl font-black text-white mb-3">{feature.title}</h3>
-                  <p className="text-gray-300 leading-relaxed text-lg">{feature.description}</p>
+                  <h3 className="text-2xl font-black text-white mb-3">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-300 leading-relaxed text-lg">
+                    {feature.description}
+                  </p>
                 </div>
               </div>
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-orange-500/10 to-transparent rounded-full blur-3xl group-hover:from-orange-500/20 transition-all duration-300"></div>
@@ -337,7 +393,9 @@ export function CustomerFeedback() {
   };
 
   const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setCurrentTestimonial(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+    );
   };
 
   const testimonial = testimonials[currentTestimonial];
@@ -352,11 +410,15 @@ export function CustomerFeedback() {
               MEMBERS SAY
             </span>
           </h2>
-          <p className="text-xl text-gray-400">Join thousands of satisfied members achieving their fitness goals</p>
+          <p className="text-xl text-gray-400">
+            Join thousands of satisfied members achieving their fitness goals
+          </p>
         </div>
 
         <div className="bg-white/5 backdrop-blur-sm rounded-3xl border-2 border-orange-500/30 p-12 md:p-16 relative overflow-hidden">
-          <div className="absolute top-8 right-8 text-orange-500/20 text-8xl font-black">"</div>
+          <div className="absolute top-8 right-8 text-orange-500/20 text-8xl font-black">
+            "
+          </div>
 
           <div className="relative z-10">
             <div className="flex items-center gap-6 mb-8">
@@ -366,7 +428,9 @@ export function CustomerFeedback() {
                 className="w-20 h-20 rounded-full object-cover border-3 border-orange-500"
               />
               <div>
-                <h3 className="text-2xl font-black text-white">{testimonial.name}</h3>
+                <h3 className="text-2xl font-black text-white">
+                  {testimonial.name}
+                </h3>
                 <p className="text-orange-400 font-bold">{testimonial.role}</p>
                 <div className="flex gap-1 mt-2">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
@@ -378,7 +442,9 @@ export function CustomerFeedback() {
               </div>
             </div>
 
-            <p className="text-xl text-gray-300 leading-relaxed font-medium italic mb-8">"{testimonial.text}"</p>
+            <p className="text-xl text-gray-300 leading-relaxed font-medium italic mb-8">
+              "{testimonial.text}"
+            </p>
           </div>
 
           <div className="flex items-center justify-between">
@@ -388,7 +454,9 @@ export function CustomerFeedback() {
                   key={idx}
                   onClick={() => setCurrentTestimonial(idx)}
                   className={`h-3 rounded-full transition-all duration-300 ${
-                    idx === currentTestimonial ? 'w-12 bg-orange-500' : 'w-3 bg-gray-600 hover:bg-gray-500'
+                    idx === currentTestimonial
+                      ? "w-12 bg-orange-500"
+                      : "w-3 bg-gray-600 hover:bg-gray-500"
                   }`}
                   aria-label={`Go to testimonial ${idx + 1}`}
                 />
@@ -400,16 +468,36 @@ export function CustomerFeedback() {
                 onClick={prevTestimonial}
                 className="p-3 bg-orange-500 hover:bg-orange-600 text-white rounded-full transition-all duration-300 hover:scale-110 active:scale-95"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
                 </svg>
               </button>
               <button
                 onClick={nextTestimonial}
                 className="p-3 bg-orange-500 hover:bg-orange-600 text-white rounded-full transition-all duration-300 hover:scale-110 active:scale-95"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </button>
             </div>
@@ -422,10 +510,16 @@ export function CustomerFeedback() {
               key={idx}
               onClick={() => setCurrentTestimonial(idx)}
               className={`cursor-pointer relative overflow-hidden rounded-2xl transition-all duration-300 ${
-                idx === currentTestimonial ? 'ring-2 ring-orange-500 scale-105' : 'opacity-60 hover:opacity-100'
+                idx === currentTestimonial
+                  ? "ring-2 ring-orange-500 scale-105"
+                  : "opacity-60 hover:opacity-100"
               }`}
             >
-              <img src={member.image} alt={member.name} className="w-full h-24 object-cover" />
+              <img
+                src={member.image}
+                alt={member.name}
+                className="w-full h-24 object-cover"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-3">
                 <div>
                   <p className="text-white font-bold text-sm">{member.name}</p>

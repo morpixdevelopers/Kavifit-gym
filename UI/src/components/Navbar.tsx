@@ -31,9 +31,11 @@ export default function Navbar({
           </div>
           <div className="hidden sm:block">
             <h1 className="text-xl font-black text-white tracking-wider">
-              IRON
+              KAVIFIT
             </h1>
-            <p className="text-xs text-orange-400 font-bold -mt-1">FITNESS</p>
+            <p className="text-xs text-orange-400 font-bold -mt-1">
+              UNISEX GYM
+            </p>
           </div>
         </div>
 
