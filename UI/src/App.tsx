@@ -4,7 +4,14 @@ import Hero, { TransformationGallery, WhyChooseUs } from "./components/Hero";
 import ImageGallery from "./components/ImageGallery";
 import PlansSection from "./components/PlansSection";
 import DemoModal from "./components/DemoModal";
-import { MapPin, Clock, Phone, Instagram } from "lucide-react";
+import {
+  MapPin,
+  Clock,
+  Phone,
+  Instagram,
+  Navigation,
+  MessageCircle,
+} from "lucide-react";
 
 function App() {
   const [demoModalOpen, setDemoModalOpen] = useState(false);
@@ -69,31 +76,31 @@ function App() {
                       OPENING HOURS
                     </h2>
                   </div>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center py-1.5 border-b border-gray-700">
-                      <span className="text-sm font-bold text-white">
-                        Monday - Friday
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center py-2">
+                      <span className="text-base font-bold text-white">
+                        Mon - Sat
                       </span>
-                      <span className="text-sm text-orange-400 font-semibold">
-                        6:00 AM - 11:00 PM
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center py-1.5 border-b border-gray-700">
-                      <span className="text-sm font-bold text-white">
-                        Saturday
-                      </span>
-                      <span className="text-sm text-orange-400 font-semibold">
-                        7:00 AM - 10:00 PM
+                      <span className="text-base text-orange-400 font-semibold">
+                        5:30 AM - 10:30 AM | 5:00 PM - 9:30 PM
                       </span>
                     </div>
-                    <div className="mt-4 p-3 bg-gradient-to-r from-orange-500/10 to-red-600/10 rounded-lg border border-orange-500/30">
-                      <p className="text-center text-white font-bold text-sm">
-                        24/7 Access Available
-                      </p>
-                      <p className="text-center text-gray-400 text-xs mt-1">
-                        For Premium Members
-                      </p>
+
+                    <div className="flex justify-between items-center py-1">
+                      <span className="text-base font-bold text-white">
+                        Sunday
+                      </span>
+                      <span className="text-base font-semibold text-red-500">
+                        Closed
+                      </span>
                     </div>
+
+                    <button
+                      onClick={() => setDemoModalOpen(true)}
+                      className="w-full px-6 py-3 bg-gradient-to-r from-orange-500 to-red-600 text-white text-base font-bold rounded-lg shadow-lg hover:shadow-orange-500/50 transition-all duration-300 hover:scale-105 active:scale-95"
+                    >
+                      Book a Free Trial
+                    </button>
                   </div>
                 </div>
 
@@ -109,29 +116,40 @@ function App() {
                   </div>
                   <div className="space-y-2 text-gray-300">
                     <p className="text-base font-bold text-white">
-                      Kavifit unisex gym
+                      Kavifit Gym
                     </p>
-                    <p className="text-sm">123 Fitness Street</p>
-                    <p className="text-sm">Downtown District</p>
-                    <p className="text-sm">City, State 12345</p>
-                    <p className="text-sm">Phone: (123) 456-7890</p>
-                    <p className="text-sm">Email: info@kavifitgym.com</p>
+                    <p className="text-sm">9/29, 2nd St, Kumar Nagar</p>
+                    <p className="text-sm">Indira Nagar, Tiruppur</p>
+                    <p className="text-sm">Tamil Nadu 641603</p>
+                    <p className="text-sm">Phone: +91 9361922033</p>
+                    <p className="text-sm">Email: kavigym9361@gmail.com</p>
                   </div>
                 </div>
               </div>
 
               {/* Right Side - Map */}
-              <div className="bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border-2 border-orange-500/20">
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border-2 border-orange-500/20 relative">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.184132576123!2d-73.98811768459398!3d40.75889597932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.5!2d77.35!3d11.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDA2JzAwLjAiTiA3N8KwMjEnMDAuMCJF!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
                   style={{ border: 0, minHeight: "400px" }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Gym Location"
+                  title="Kavifit Gym Location"
                 ></iframe>
+                <div className="absolute bottom-4 right-4 z-10">
+                  <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=KAVIFIT+Advance+Unisex+Gym,+Indira+Nagar,+Tirupur"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold rounded-lg shadow-lg transition-all duration-300 hover:scale-105 flex items-center gap-2"
+                  >
+                    <Navigation className="w-4 h-4" />
+                    Get Directions
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -143,7 +161,14 @@ function App() {
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-gray-400 text-sm">
             Developed by{" "}
-            <span className="text-orange-500 font-bold">morpix</span>
+            <a
+              href="https://www.instagram.com/morpix._/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-orange-500 font-bold hover:text-orange-400 transition-colors duration-300"
+            >
+              morpix._
+            </a>
           </p>
         </div>
       </footer>
@@ -151,7 +176,7 @@ function App() {
       {/* Fixed Contact Icons */}
       <div className="fixed bottom-8 right-8 z-50 flex flex-col gap-4">
         <a
-          href="tel:+1234567890"
+          href="tel:+919361922033"
           className="group relative p-4 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full shadow-2xl hover:shadow-green-500/50 transition-all duration-300 hover:scale-110 active:scale-95"
           aria-label="Call us"
         >
@@ -159,7 +184,16 @@ function App() {
           <div className="absolute -top-2 -right-2 w-4 h-4 bg-red-500 rounded-full animate-pulse"></div>
         </a>
         <a
-          href="https://instagram.com"
+          href="https://wa.me/919361922033"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative p-4 bg-gradient-to-br from-green-400 to-green-600 rounded-full shadow-2xl hover:shadow-green-400/50 transition-all duration-300 hover:scale-110 active:scale-95"
+          aria-label="Message us on WhatsApp"
+        >
+          <MessageCircle className="w-6 h-6 text-white" strokeWidth={2.5} />
+        </a>
+        <a
+          href="https://www.instagram.com/kavifit_unisex_gym/?igsh=dHdwbTc1anJidGts#"
           target="_blank"
           rel="noopener noreferrer"
           className="group relative p-4 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full shadow-2xl hover:shadow-pink-500/50 transition-all duration-300 hover:scale-110 active:scale-95"

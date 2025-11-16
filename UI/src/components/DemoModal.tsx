@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { X } from 'lucide-react';
+import { useState } from "react";
+import { X } from "lucide-react";
 
 interface DemoModalProps {
   isOpen: boolean;
@@ -8,9 +8,9 @@ interface DemoModalProps {
 
 export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
   const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    date: '',
+    name: "",
+    phone: "",
+    date: "",
   });
   const [submitted, setSubmitted] = useState(false);
 
@@ -24,10 +24,29 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Demo booking submitted:', formData);
+    console.log("Demo booking submitted:", formData);
+
+    // Format the message for WhatsApp
+    const message = `Hello! I would like to book a free trial session.
+
+Name: ${formData.name}
+Phone: ${formData.phone}
+Preferred Date: ${formData.date}
+
+Please confirm my booking. Thank you!`;
+
+    // Encode the message for URL
+    const encodedMessage = encodeURIComponent(message);
+
+    // Create WhatsApp URL
+    const whatsappUrl = `https://wa.me/919361922033?text=${encodedMessage}`;
+
+    // Open WhatsApp in a new tab
+    window.open(whatsappUrl, "_blank");
+
     setSubmitted(true);
     setTimeout(() => {
-      setFormData({ name: '', phone: '', date: '' });
+      setFormData({ name: "", phone: "", date: "" });
       setSubmitted(false);
       onClose();
     }, 2000);
@@ -38,13 +57,15 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
   return (
     <div
       className={`fixed inset-0 z-50 flex items-center justify-center px-6 transition-all duration-300 ${
-        isOpen ? 'bg-black/60 backdrop-blur-sm' : 'bg-transparent backdrop-blur-0'
+        isOpen
+          ? "bg-black/60 backdrop-blur-sm"
+          : "bg-transparent backdrop-blur-0"
       }`}
       onClick={onClose}
     >
       <div
         className={`relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-8 max-w-md w-full border-2 border-orange-500/50 shadow-2xl transition-all duration-500 transform ${
-          isOpen ? 'scale-100 opacity-100' : 'scale-75 opacity-0'
+          isOpen ? "scale-100 opacity-100" : "scale-75 opacity-0"
         }`}
         onClick={(e) => e.stopPropagation()}
       >
@@ -137,7 +158,9 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                 />
               </svg>
             </div>
-            <h3 className="text-2xl font-black text-white mb-2">Booking Confirmed!</h3>
+            <h3 className="text-2xl font-black text-white mb-2">
+              Booking Confirmed!
+            </h3>
             <p className="text-gray-400">
               We'll contact you soon to confirm your free demo session.
             </p>

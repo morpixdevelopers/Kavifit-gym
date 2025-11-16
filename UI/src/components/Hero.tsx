@@ -312,28 +312,29 @@ const testimonials = [
 
 const whyChooseUsFeatures = [
   {
-    icon: "⚡",
-    title: "Premium Equipment",
+    icon: "🏆",
+    title: "Proven Best Results",
     description:
-      "State-of-the-art fitness equipment from leading brands. 100+ machines and tools for every workout goal.",
+      "Visible results with members achieving weight loss, muscle gain, and overall transformation.",
   },
   {
-    icon: "👨‍🏫",
-    title: "Expert Trainers",
+    icon: "🏋️‍♂️",
+    title: "Standard Equipment",
     description:
-      "Certified and experienced trainers with personalized programs. Available for one-on-one guidance.",
+      "Top-quality machines and certified trainers to ensure a safe, effective, and well-guided workout experience.",
   },
   {
-    icon: "🎯",
-    title: "Results Guaranteed",
+    icon: "🎉",
+    title:
+      "Exclusive Friday                                                                                                                                                               Classes",
     description:
-      "Proven track record with 500+ successful transformations. Join our community and achieve your goals.",
+      "High-energy Zumba sessions every Friday to make your workouts fun, refreshing, and calorie-burning.",
   },
   {
-    icon: "💪",
-    title: "24/7 Access",
+    icon: "📋",
+    title: "Personalized Diet Charts",
     description:
-      "Train anytime that suits you. Our facility is open round the clock for your convenience.",
+      "CCustom meal plans designed to match your personal health goals, body type, and lifestyle.",
   },
 ];
 

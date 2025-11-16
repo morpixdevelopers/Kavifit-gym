@@ -15,35 +15,35 @@ import photo8 from "../assets/facilities/photo8.JPG";
 const gymImages = [
   {
     image: photo1,
-    title: "State-of-the-Art Equipment",
+    title: "Strength Training Zone",
   },
   {
     image: photo2,
-    title: "Personal Training Sessions",
-  },
-  {
-    image: photo3,
     title: "Cardio Zone",
   },
   {
+    image: photo3,
+    title: "Weightlifting and Muscle Building",
+  },
+  {
     image: photo4,
-    title: "Free Weights Area",
+    title: "Powerlifting & Machine Training Section",
   },
   {
     image: photo5,
-    title: "Group Classes",
+    title: "Dumbbell Training & Weight Zone",
   },
   {
     image: photo6,
-    title: "Yoga Studio",
+    title: "Lower Body Workout & Strength Machines",
   },
   {
     image: photo7,
-    title: "CrossFit Area",
+    title: "Cardio Cycling Zone",
   },
   {
     image: photo8,
-    title: "Recovery Zone",
+    title: "Treadmill Zone",
   },
 ];
 
