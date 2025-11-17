@@ -1,323 +1,155 @@
 import { useState } from "react";
-import { Check, Calendar } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-type Plan = {
-  duration: string;
-  price: number;
-  icon: any;
-  color?: string;
-  popular?: boolean;
-  bonus?: string | null;
-};
+// Import facility images from assets folder
+// Images should be named photo1.JPG through photo8.JPG in UI/src/assets/facilities/
+import photo1 from "../assets/facilities/photo1.JPG";
+import photo2 from "../assets/facilities/photo2.JPG";
+import photo3 from "../assets/facilities/photo3.JPG";
+import photo4 from "../assets/facilities/photo4.JPG";
+import photo5 from "../assets/facilities/photo5.JPG";
+import photo6 from "../assets/facilities/photo6.JPG";
+import photo7 from "../assets/facilities/photo7.JPG";
+import photo8 from "../assets/facilities/photo8.JPG";
 
-const plans: Plan[] = [
-  { duration: "1 Month", price: 2000, icon: Calendar, color: "from-blue-500 to-cyan-500", popular: false, bonus: null },
-  { duration: "3 Months", price: 4000, icon: Calendar, color: "from-orange-500 to-red-600", popular: false, bonus: null },
-  { duration: "6 Months", price: 6000, icon: Calendar, color: "from-emerald-500 to-teal-600", popular: false, bonus: null },
-  { duration: "1 Year", price: 8000, icon: Calendar, color: "from-purple-500 to-pink-600", popular: false, bonus: "Best Value" },
+const gymImages = [
+  {
+    image: photo1,
+    title: "Strength Training Zone",
+  },
+  {
+    image: photo2,
+    title: "Cardio Zone",
+  },
+  {
+    image: photo3,
+    title: "Weightlifting and Muscle Building",
+  },
+  {
+    image: photo4,
+    title: "Powerlifting & Machine Training Section",
+  },
+  {
+    image: photo5,
+    title: "Dumbbell Training & Weight Zone",
+  },
+  {
+    image: photo6,
+    title: "Lower Body Workout & Strength Machines",
+  },
+  {
+    image: photo7,
+    title: "Cardio Cycling Zone",
+  },
+  {
+    image: photo8,
+    title: "Treadmill Zone",
+  },
 ];
 
-const morePlans: Plan[] = [
-  { duration: "1 Month", price: 7000, icon: Calendar, color: "from-yellow-500 to-orange-600" },
-  { duration: "3 Month", price: 18000, icon: Calendar, color: "from-red-500 to-pink-600" },
-];
+export default function ImageGallery() {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-const features = ["Diet Plans", "Zumba Classes"];
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % gymImages.length);
+  };
 
-interface PlansSectionProps {
-  onJoinClick: (data: { plan?: Plan; phone?: string }) => void;
-}
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + gymImages.length) % gymImages.length);
+  };
 
-export default function PlansSection({ onJoinClick }: PlansSectionProps) {
-  const [showModal, setShowModal] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-
-  const [showJoinPopup, setShowJoinPopup] = useState(false);
-  const [joinPlan, setJoinPlan] = useState<Plan | null>(null);
-  const [phone, setPhone] = useState("");
-  const [phoneError, setPhoneError] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-
-  const validatePhone = (value: string) => {
-    const digits = value.replace(/\D/g, "");
-    if (!/^[6-9]\d{9}$/.test(digits)) {
-      return "Enter a valid 10-digit mobile number.";
+  const getVisibleImages = () => {
+    const images = [];
+    for (let i = 0; i < 3; i++) {
+      const index = (currentIndex + i) % gymImages.length;
+      images.push({ ...gymImages[index], position: i });
     }
-    return "";
-  };
-
-  const openJoinPopupFromCard = (plan: Plan) => {
-    setJoinPlan(plan);
-    setPhone("");
-    setPhoneError("");
-    setSubmitted(false);
-    setShowJoinPopup(true);
-  };
-
-  const handleBookNow = () => {
-    if (selectedIndex === null) return;
-    const selectedPlan = morePlans[selectedIndex];
-    setShowModal(false);
-    setJoinPlan(selectedPlan);
-    setPhone("");
-    setPhoneError("");
-    setSubmitted(false);
-    setShowJoinPopup(true);
-  };
-
-  const sendWhatsApp = (digits: string, plan?: Plan) => {
-    const planText = plan ? `Plan: ${plan.duration} — ₹${plan.price.toLocaleString()}` : "";
-    const message = `Hello! I would like to book a personal training session.\n\n${planText}\nPhone: ${digits}\n\nPlease contact me to confirm. Thank you!`;
-    const encoded = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/919500848503?text=${encoded}`;
-    window.open(whatsappUrl, "_blank");
-  };
-
-  const handleSubmitPhone = () => {
-    const err = validatePhone(phone);
-    setPhoneError(err);
-    if (err) return;
-    setSubmitting(true);
-    const digits = phone.replace(/\D/g, "");
-    const payload = {
-      plan: joinPlan ?? undefined,
-      phone: digits,
-    };
-    console.log('entering number',digits)
-    sendWhatsApp(digits, joinPlan ?? undefined);
-
-    setTimeout(() => {
-      setSubmitting(false);
-      setSubmitted(true);
-      try {
-        onJoinClick?.(payload);
-      } catch (e) {
-        console.warn(e);
-      }
-      sendWhatsApp(digits, joinPlan ?? undefined);
-      setTimeout(() => {
-        setShowJoinPopup(false);
-        setJoinPlan(null);
-        setPhone("");
-        setSubmitted(false);
-      }, 1400);
-    }, 800);
+    return images;
   };
 
   return (
-    <section id="packages" className="py-20 px-6 bg-gradient-to-b from-slate-800 to-slate-900">
+    <div id="facilities" className="py-12 sm:py-20 px-4 sm:px-6 relative">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-black text-white mb-4">
-            CHOOSE YOUR{" "}
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600"> MEMBERSHIP </span>
+        <div className="text-center mb-8 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-2">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">
+              FACILITIES
+            </span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto"> Select the perfect plan to match your fitness goals and lifestyle </p>
+          <p className="text-sm sm:text-lg text-gray-400">
+            Experience world-class training environment
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {plans.map((plan) => {
-            const Icon = plan.icon;
-            return (
-              <div key={plan.duration} className="flex justify-center">
+        <div className="relative">
+          <div className="flex items-center justify-center gap-4 sm:gap-6 min-h-[240px] sm:min-h-[320px] md:min-h-[400px]">
+            <button
+              onClick={prevSlide}
+              className="z-20 p-2 sm:p-4 bg-orange-500 hover:bg-orange-600 text-white rounded-full shadow-2xl hover:scale-110 transition-all duration-300 active:scale-95"
+              aria-label="Previous image"
+            >
+              <ChevronLeft className="w-5 h-5 sm:w-8 sm:h-8" strokeWidth={3} />
+            </button>
+
+            <div className="relative flex-1 max-w-5xl h-[240px] sm:h-[320px] md:h-[400px] flex items-center justify-center gap-3 sm:gap-4">
+              {getVisibleImages().map((image, idx) => (
                 <div
-                  className={`w-full max-w-xs relative bg-white/5 backdrop-blur-sm rounded-3xl p-6 border-2 transition-all duration-300 hover:scale-105 flex flex-col ${
-                    plan.popular ? "border-orange-500 shadow-2xl shadow-orange-500/20" : "border-gray-700 hover:border-gray-600"
+                  key={`${image.title}-${idx}`}
+                  className={`absolute transition-all duration-700 ease-out ${
+                    idx === 1
+                      ? "z-10 scale-105 opacity-100"
+                      : idx === 0
+                      ? "-translate-x-40 sm:-translate-x-80 scale-95 opacity-70"
+                      : "translate-x-40 sm:translate-x-80 scale-95 opacity-70"
                   }`}
+                  style={{
+                    width: idx === 1 ? "80%" : "52%",
+                    maxWidth: 350,
+                  }}
                 >
-                  <div className="text-center mb-8">
-                    <div className={`inline-flex p-3 rounded-2xl bg-gradient-to-br ${plan.color ?? "from-slate-500 to-slate-600"} mb-4`}>
-                      <Icon className="w-6 h-6 text-white" strokeWidth={2.5} />
-                    </div>
-                    <h3 className="text-2xl font-black text-white mb-3">{plan.duration}</h3>
-                    <div className="flex items-end justify-center gap-1">
-                      <span className="text-4xl font-black text-white">₹{plan.price.toLocaleString()}</span>
-                    </div>
-                  </div>
-
-                  <ul className="space-y-3 mb-8 flex-grow">
-                    {features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <div className={`flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-br ${plan.color ?? "from-slate-500 to-slate-600"} flex items-center justify-center mt-0.5`}>
-                          <Check className="w-3 h-3 text-white" strokeWidth={4} />
-                        </div>
-                        <span className="text-gray-300 text-sm leading-snug">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <button
-                    onClick={() => openJoinPopupFromCard(plan)}
-                    className={`w-full py-3 bg-gradient-to-r ${plan.color ?? "from-slate-500 to-slate-600"} text-white font-bold rounded-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95`}
-                  >
-                    JOIN NOW
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="text-center">
-          <button
-            onClick={() => setShowModal(true)}
-            className="px-8 py-3 bg-white/10 border border-white/20 rounded-xl hover:bg-white/20 transition-all text-white text-lg font-semibold"
-          >
-            PERSONAL TRAINING OPTIONS
-          </button>
-        </div>
-
-        {showModal && (
-          <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-6 z-50">
-            <div className="bg-slate-900 rounded-3xl p-8 max-w-2xl w-full relative border border-white/10">
-              <button
-                onClick={() => {
-                  setShowModal(false);
-                  setSelectedIndex(null);
-                }}
-                className="absolute top-4 right-4 text-gray-400 hover:text-white"
-              >
-                ✕
-              </button>
-
-              <h3 className="text-3xl font-bold text-white mb-6 text-center">Personal Training Options</h3>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {morePlans.map((plan, idx) => {
-                  const Icon = plan.icon;
-                  const selected = selectedIndex === idx;
-                  return (
-                    <button
-                      key={idx}
-                      onClick={() => setSelectedIndex(idx)}
-                      className={`w-full text-left p-4 rounded-2xl border transition-all flex items-center justify-between focus:outline-none ${
-                        selected ? "border-orange-400 shadow-lg bg-gradient-to-r from-orange-500/10 to-transparent" : "border-white/10 bg-white/5 hover:bg-white/10"
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="p-3 bg-white/10 rounded-xl">
-                          <Icon className="w-6 h-6 text-orange-400" />
-                        </div>
-                        <div>
-                          <div className="text-white font-semibold">{plan.duration}</div>
-                          <div className="text-sm text-gray-400">Personal coaching sessions</div>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-3">
-                        <div className="text-white font-bold text-lg">₹{plan.price.toLocaleString()}</div>
-                        {selected && <div className="text-sm text-orange-400 font-bold">Selected</div>}
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-
-              <div className="mt-6 flex flex-col sm:flex-row gap-3 items-center justify-between">
-                <div className="text-sm text-gray-300">
-                  {selectedIndex === null ? "Choose a plan to enable booking." : `Selected: ${morePlans[selectedIndex].duration} — ₹${morePlans[selectedIndex].price.toLocaleString()}`}
-                </div>
-
-                <div className="flex gap-3">
-                  <button
-                    onClick={() => {
-                      setSelectedIndex(null);
-                    }}
-                    className="px-4 py-2 bg-white/5 border border-white/10 text-white rounded-xl hover:bg-white/10 transition"
-                  >
-                    Clear
-                  </button>
-
-                  <button
-                    onClick={handleBookNow}
-                    disabled={selectedIndex === null}
-                    className={`px-6 py-2 rounded-xl font-semibold text-white transition ${selectedIndex === null ? "bg-gray-600/40 cursor-not-allowed" : "bg-gradient-to-r from-orange-500 to-red-600 hover:scale-105"}`}
-                  >
-                    BOOK NOW
-                  </button>
-                </div>
-              </div>
-
-              <button
-                onClick={() => {
-                  setShowModal(false);
-                  setSelectedIndex(null);
-                }}
-                className="w-full mt-6 py-3 bg-gradient-to-r from-slate-700 to-slate-800 text-gray-300 font-semibold rounded-xl"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        )}
-
-        {showJoinPopup && joinPlan && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <div className="absolute inset-0 bg-black/60" onClick={() => setShowJoinPopup(false)} />
-            <div className="relative bg-slate-900 rounded-3xl p-6 max-w-md w-full mx-auto border border-white/10">
-              <button
-                onClick={() => {
-                  setShowJoinPopup(false);
-                  setJoinPlan(null);
-                }}
-                className="absolute top-3 right-3 text-gray-400 hover:text-white"
-              >
-                ✕
-              </button>
-
-              {!submitted ? (
-                <>
-                  <h3 className="text-2xl font-bold text-white mb-2 text-center">Thanks for choosing {joinPlan.duration}!</h3>
-                  <p className="text-sm text-gray-300 mb-4 text-center">Please enter your phone number and we'll reach you out shortly.</p>
-
-                  <div className="space-y-3">
-                    <label className="block text-sm text-gray-300">Phone number</label>
-                    <input
-                      value={phone}
-                      onChange={(e) => {
-                        setPhone(e.target.value);
-                        if (phoneError) setPhoneError("");
-                      }}
-                      type="tel"
-                      inputMode="numeric"
-                      placeholder="e.g. 9876543210"
-                      className="w-full p-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-orange-400 text-white"
+                  <div className="relative group overflow-hidden rounded-2xl shadow-2xl">
+                    <img
+                      src={image.image}
+                      alt={image.title}
+                      className="w-full h-[240px] sm:h-[320px] md:h-[400px] object-cover transform group-hover:scale-110 transition-transform duration-700"
                     />
-                    {phoneError && <div className="text-xs text-rose-400">{phoneError}</div>}
-
-                    <div className="flex gap-3 justify-end mt-2">
-                      <button
-                        onClick={() => {
-                          setShowJoinPopup(false);
-                          setJoinPlan(null);
-                        }}
-                        className="px-4 py-2 bg-white/5 border border-white/10 text-white rounded-xl hover:bg-white/10"
-                      >
-                        Cancel
-                      </button>
-
-                      <button
-                        onClick={handleSubmitPhone}
-                        disabled={submitting}
-                        className={`px-5 py-2 rounded-xl font-semibold text-white transition ${submitting ? "bg-gray-600/40" : "bg-gradient-to-r from-orange-500 to-red-600 hover:scale-105"}`}
-                      >
-                        {submitting ? "Sending..." : "Submit"}
-                      </button>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                        <h3 className="text-white text-sm sm:text-2xl font-bold">
+                          {image.title}
+                        </h3>
+                      </div>
                     </div>
                   </div>
-                </>
-              ) : (
-                <div className="text-center py-8">
-                  <div className="mb-4 text-3xl">🎉</div>
-                  <h4 className="text-xl font-bold text-white mb-2">Thanks — we got it!</h4>
-                  <p className="text-sm text-gray-300">We will reach you shortly on {phone.replace(/\D/g, "")} to confirm your {joinPlan.duration} plan.</p>
                 </div>
-              )}
+              ))}
             </div>
+
+            <button
+              onClick={nextSlide}
+              className="z-20 p-2 sm:p-4 bg-orange-500 hover:bg-orange-600 text-white rounded-full shadow-2xl hover:scale-110 transition-all duration-300 active:scale-95"
+              aria-label="Next image"
+            >
+              <ChevronRight className="w-5 h-5 sm:w-8 sm:h-8" strokeWidth={3} />
+            </button>
           </div>
-        )}
+
+          <div className="flex justify-center gap-2 mt-8">
+            {gymImages.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                className={`h-2 sm:h-2.5 rounded-full transition-all duration-300 ${
+                  idx === currentIndex
+                    ? "w-10 sm:w-12 bg-orange-500"
+                    : "w-2 sm:w-2 bg-gray-600 hover:bg-gray-500"
+                }`}
+                aria-label={`Go to image ${idx + 1}`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }
