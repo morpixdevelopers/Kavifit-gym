@@ -34,7 +34,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 overflow-x-hidden">
       <Navbar
         onHomeClick={scrollToTop}
         onDemoClick={() => setDemoModalOpen(true)}
@@ -50,101 +50,98 @@ function App() {
         onClose={() => setDemoModalOpen(false)}
       />
 
-      <div className="pt-16">
+      <div className="pt-16 sm:pt-20">
         <Hero onJoinClick={() => setDemoModalOpen(true)} />
         <WhyChooseUs />
         <PlansSection onJoinClick={() => setDemoModalOpen(true)} />
         <TransformationGallery />
         <ImageGallery />
 
-        {/* Location and Hours Section */}
         <section
           id="contact-us"
-          className="py-12 px-6 bg-gradient-to-b from-slate-900 to-slate-800"
+          className="py-10 sm:py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-900 to-slate-800"
         >
           <div className="max-w-5xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-6">
-              {/* Left Side - 2 Cards Stacked */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-4">
-                {/* Opening Hours Card */}
-                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border-2 border-orange-500/20">
-                  <div className="flex items-center gap-3 mb-4">
+                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border-2 border-orange-500/20">
+                  <div className="flex items-center gap-3 mb-3 sm:mb-4">
                     <div className="p-2 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg">
                       <Clock className="w-5 h-5 text-white" />
                     </div>
-                    <h2 className="text-xl md:text-2xl font-black text-white">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-black text-white">
                       OPENING HOURS
                     </h2>
                   </div>
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center py-2">
+                  <div className="space-y-3">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2">
                       <span className="text-base font-bold text-white">
                         Mon - Sat
                       </span>
-                      <span className="text-base text-orange-400 font-semibold">
+                      <span className="text-sm sm:text-base text-orange-400 font-semibold mt-2 sm:mt-0">
                         5:30 AM - 10:30 AM | 5:00 PM - 9:30 PM
                       </span>
                     </div>
 
-                    <div className="flex justify-between items-center py-1">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-1">
                       <span className="text-base font-bold text-white">
                         Sunday
                       </span>
-                      <span className="text-base font-semibold text-red-500">
+                      <span className="text-base text-red-500 font-semibold mt-2 sm:mt-0">
                         Closed
                       </span>
                     </div>
 
                     <button
                       onClick={() => setDemoModalOpen(true)}
-                      className="w-full px-6 py-3 bg-gradient-to-r from-orange-500 to-red-600 text-white text-base font-bold rounded-lg shadow-lg hover:shadow-orange-500/50 transition-all duration-300 hover:scale-105 active:scale-95"
+                      className="w-full mt-2 px-4 py-3 sm:px-6 sm:py-3 bg-gradient-to-r from-orange-500 to-red-600 text-white text-base font-bold rounded-lg shadow-lg hover:shadow-orange-500/50 transition-all duration-300 hover:scale-105 active:scale-95"
                     >
                       Book a Free Trial
                     </button>
                   </div>
                 </div>
 
-                {/* Location Card */}
-                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border-2 border-orange-500/20">
-                  <div className="flex items-center gap-3 mb-4">
+                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border-2 border-orange-500/20">
+                  <div className="flex items-center gap-3 mb-3 sm:mb-4">
                     <div className="p-2 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg">
                       <MapPin className="w-5 h-5 text-white" />
                     </div>
-                    <h2 className="text-xl md:text-2xl font-black text-white">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-black text-white">
                       LOCATION
                     </h2>
                   </div>
-                  <div className="space-y-2 text-gray-300">
+                  <div className="space-y-1 text-gray-300 text-sm sm:text-sm">
                     <p className="text-base font-bold text-white">
                       Kavifit Gym
                     </p>
-                    <p className="text-sm">9/29, 2nd St, Kumar Nagar</p>
-                    <p className="text-sm">Indira Nagar, Tiruppur</p>
-                    <p className="text-sm">Tamil Nadu 641603</p>
-                    <p className="text-sm">Phone: +91 9361922033</p>
-                    <p className="text-sm">Email: kavigym9361@gmail.com</p>
+                    <p className="">9/29, 2nd St, Kumar Nagar</p>
+                    <p className="">Indira Nagar, Tiruppur</p>
+                    <p className="">Tamil Nadu 641603</p>
+                    <p className="">Phone: +91 9361922033</p>
+                    <p className="">Email: kavigym9361@gmail.com</p>
                   </div>
                 </div>
               </div>
 
-              {/* Right Side - Map */}
-              <div className="bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border-2 border-orange-500/20 relative">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.5!2d77.35!3d11.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDA2JzAwLjAiTiA3N8KwMjEnMDAuMCJF!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0, minHeight: "400px" }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Kavifit Gym Location"
-                ></iframe>
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border-2 border-orange-500/20 relative min-h-[280px] sm:min-h-[360px] md:min-h-[420px]">
+                <div className="w-full h-full">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.5!2d77.35!3d11.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDA2JzAwLjAiTiA3N8KwMjEnMDAuMCJF!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
+                    className="w-full h-[280px] sm:h-[360px] md:h-[420px] block"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Kavifit Gym Location"
+                  ></iframe>
+                </div>
+
                 <div className="absolute bottom-4 right-4 z-10">
                   <a
                     href="https://www.google.com/maps/dir/?api=1&destination=KAVIFIT+Advance+Unisex+Gym,+Indira+Nagar,+Tirupur"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold rounded-lg shadow-lg transition-all duration-300 hover:scale-105 flex items-center gap-2"
+                    className="px-3 sm:px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white text-sm sm:text-sm font-bold rounded-lg shadow-lg transition-all duration-300 hover:scale-105 flex items-center gap-2"
                   >
                     <Navigation className="w-4 h-4" />
                     Get Directions
@@ -156,8 +153,7 @@ function App() {
         </section>
       </div>
 
-      {/* Footer */}
-      <footer className="py-4 px-6 bg-slate-900 border-t border-gray-800">
+      <footer className="py-4 px-4 sm:px-6 bg-slate-900 border-t border-gray-800">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-gray-400 text-sm">
             Developed by{" "}
@@ -173,33 +169,43 @@ function App() {
         </div>
       </footer>
 
-      {/* Fixed Contact Icons */}
-      <div className="fixed bottom-8 right-8 z-50 flex flex-col gap-4">
+      <div className="fixed bottom-6 right-4 sm:bottom-8 sm:right-8 z-50 flex flex-col gap-3 sm:gap-4">
         <a
           href="tel:+919361922033"
-          className="group relative p-4 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full shadow-2xl hover:shadow-green-500/50 transition-all duration-300 hover:scale-110 active:scale-95"
+          className="group relative p-3 sm:p-4 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full shadow-2xl hover:shadow-green-500/50 transition-all duration-300 hover:scale-110 active:scale-95"
           aria-label="Call us"
         >
-          <Phone className="w-6 h-6 text-white" strokeWidth={2.5} />
-          <div className="absolute -top-2 -right-2 w-4 h-4 bg-red-500 rounded-full animate-pulse"></div>
+          <Phone
+            className="w-5 h-5 sm:w-6 sm:h-6 text-white"
+            strokeWidth={2.5}
+          />
+          <div className="absolute -top-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-red-500 rounded-full animate-pulse"></div>
         </a>
+
         <a
           href="https://wa.me/919361922033"
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative p-4 bg-gradient-to-br from-green-400 to-green-600 rounded-full shadow-2xl hover:shadow-green-400/50 transition-all duration-300 hover:scale-110 active:scale-95"
+          className="group relative p-3 sm:p-4 bg-gradient-to-br from-green-400 to-green-600 rounded-full shadow-2xl hover:shadow-green-400/50 transition-all duration-300 hover:scale-110 active:scale-95"
           aria-label="Message us on WhatsApp"
         >
-          <MessageCircle className="w-6 h-6 text-white" strokeWidth={2.5} />
+          <MessageCircle
+            className="w-5 h-5 sm:w-6 sm:h-6 text-white"
+            strokeWidth={2.5}
+          />
         </a>
+
         <a
           href="https://www.instagram.com/kavifit_unisex_gym/?igsh=dHdwbTc1anJidGts#"
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative p-4 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full shadow-2xl hover:shadow-pink-500/50 transition-all duration-300 hover:scale-110 active:scale-95"
+          className="group relative p-3 sm:p-4 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full shadow-2xl hover:shadow-pink-500/50 transition-all duration-300 hover:scale-110 active:scale-95"
           aria-label="Follow us on Instagram"
         >
-          <Instagram className="w-6 h-6 text-white" strokeWidth={2.5} />
+          <Instagram
+            className="w-5 h-5 sm:w-6 sm:h-6 text-white"
+            strokeWidth={2.5}
+          />
         </a>
       </div>
     </div>
