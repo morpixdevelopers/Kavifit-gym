@@ -46,30 +46,7 @@ export default function Navbar({
           >
             HOME
           </button>
-          <button
-            onClick={onWhyChooseUsClick}
-            className="text-xs lg:text-sm font-bold transition-all duration-300 text-gray-300 hover:text-white"
-          >
-            WHY CHOOSE US
-          </button>
-          <button
-            onClick={onPackagesClick}
-            className="text-xs lg:text-sm font-bold transition-all duration-300 text-gray-300 hover:text-white"
-          >
-            PACKAGES
-          </button>
-          <button
-            onClick={onTransformationClick}
-            className="text-xs lg:text-sm font-bold transition-all duration-300 text-gray-300 hover:text-white"
-          >
-            TRANSFORMATION
-          </button>
-          <button
-            onClick={onFacilitiesClick}
-            className="text-xs lg:text-sm font-bold transition-all duration-300 text-gray-300 hover:text-white"
-          >
-            FACILITIES
-          </button>
+          
           <button
             onClick={onContactUsClick}
             className="text-xs lg:text-sm font-bold transition-all duration-300 text-gray-300 hover:text-white"
