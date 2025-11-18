@@ -4,10 +4,10 @@ import { Dumbbell } from "lucide-react";
 interface NavbarProps {
   onHomeClick: () => void;
   onDemoClick: () => void;
-  onWhyChooseUsClick: () => void;
-  onPackagesClick: () => void;
-  onTransformationClick: () => void;
-  onFacilitiesClick: () => void;
+  onWhyChooseUsClick?: () => void;
+  onPackagesClick?: () => void;
+  onTransformationClick?: () => void;
+  onFacilitiesClick?: () => void;
   onContactUsClick: () => void;
 }
 
@@ -34,11 +34,13 @@ export default function Navbar({
               strokeWidth={3}
             />
           </div>
-          <div className="hidden sm:block">
-            <h1 className="text-sm sm:text-xl font-black text-white tracking-wider">
+
+          {/* Brand: visible on all sizes; compact on mobile, larger on sm+ */}
+          <div className="flex flex-col">
+            <h1 className="text-xs sm:text-xl font-black text-white tracking-wider leading-none">
               KAVIFIT
             </h1>
-            <p className="text-[10px] sm:text-xs text-orange-400 font-bold -mt-1">
+            <p className="text-[9px] sm:text-xs text-orange-400 font-bold -mt-1">
               UNISEX GYM
             </p>
           </div>

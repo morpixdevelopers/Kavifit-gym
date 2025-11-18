@@ -11,10 +11,11 @@ type Plan = {
 };
 
 const plans: Plan[] = [
-  { duration: "1 Month", price: 2000, icon: Calendar, color: "from-blue-500 to-cyan-500", popular: false, bonus: null },
+  { duration: "1 Month", price: 2000, icon: Calendar, color: "from-orange-500 to-red-600", popular: false, bonus: null },
+  { duration: "3 Months", price: 5000, icon: Calendar, color: "from-orange-500 to-red-600", popular: true, bonus: "+1 month free" },
   { duration: "3 Months", price: 4000, icon: Calendar, color: "from-orange-500 to-red-600", popular: false, bonus: null },
-  { duration: "6 Months", price: 6000, icon: Calendar, color: "from-emerald-500 to-teal-600", popular: false, bonus: null },
-  { duration: "1 Year", price: 8000, icon: Calendar, color: "from-purple-500 to-pink-600", popular: false, bonus: "Best Value" },
+  { duration: "6 Months", price: 6000, icon: Calendar, color: "from-orange-500 to-red-600", popular: false, bonus: null },
+  { duration: "1 Year", price: 8000, icon: Calendar, color: "from-orange-500 to-red-600", popular: false, bonus: "Best Value" },
 ];
 
 const morePlans: Plan[] = [
@@ -108,16 +109,33 @@ export default function PlansSection({ onJoinClick }: PlansSectionProps) {
           <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto"> Select the perfect plan to match your fitness goals and lifestyle </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        {/* <-- Changed grid here: 1 column on xs, 2 columns on small (phone) and up, 4 on large --> */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {plans.map((plan) => {
             const Icon = plan.icon;
             return (
               <div key={plan.duration} className="flex justify-center">
+                
+                {/* <-- Removed fixed max-w-xs so cards can sit side-by-side on small screens.
+                       Optionally you can use "w-full sm:max-w-xs" if you want a cap on slightly larger small screens. --> */}
                 <div
-                  className={`w-full max-w-xs relative bg-white/5 backdrop-blur-sm rounded-3xl p-6 border-2 transition-all duration-300 hover:scale-105 flex flex-col ${
+      
+                  className={`w-full relative bg-white/5 backdrop-blur-sm rounded-3xl p-6 border-2 transition-all duration-300 hover:scale-105 flex flex-col ${
                     plan.popular ? "border-orange-500 shadow-2xl shadow-orange-500/20" : "border-gray-700 hover:border-gray-600"
                   }`}
                 >
+                  {plan.popular && (
+                  <div className="absolute -top-7 left-1/2 -translate-x-1/2 px-6 py-2 bg-gradient-to-r from-orange-500 to-red-600 text-white text-sm font-bold rounded-full">
+                    MOST POPULAR
+                  </div>
+                )}
+
+                {plan.bonus && !plan.popular && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-2 bg-gradient-to-r from-orange-500 to-red-600 text-white text-sm font-bold rounded-full">
+                    {plan.bonus}
+                  </div>
+                )}
+                    
                   <div className="text-center mb-8">
                     <div className={`inline-flex p-3 rounded-2xl bg-gradient-to-br ${plan.color ?? "from-slate-500 to-slate-600"} mb-4`}>
                       <Icon className="w-6 h-6 text-white" strokeWidth={2.5} />
@@ -126,7 +144,10 @@ export default function PlansSection({ onJoinClick }: PlansSectionProps) {
                     <div className="flex items-end justify-center gap-1">
                       <span className="text-4xl font-black text-white">₹{plan.price.toLocaleString()}</span>
                     </div>
-                  </div>
+                    {plan.bonus && plan.popular && (
+                    <p className="text-orange-400 text-sm font-bold mt-2">{plan.bonus}</p>
+                  )}
+                </div>
 
                   <ul className="space-y-3 mb-8 flex-grow">
                     {features.map((feature, idx) => (
@@ -154,7 +175,9 @@ export default function PlansSection({ onJoinClick }: PlansSectionProps) {
         <div className="text-center">
           <button
             onClick={() => setShowModal(true)}
-            className="px-8 py-3 bg-white/10 border border-white/20 rounded-xl hover:bg-white/20 transition-all text-white text-lg font-semibold"
+            className="px-3 lg:px-10 py-2.5 lg:py-4 bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold rounded-full text-xs lg:text-sm hover:shadow-lg hover:shadow-orange-500/50 transition-all duration-300 hover:scale-105 active:scale-95 whitespace-nowrap"
+
+
           >
             PERSONAL TRAINING OPTIONS
           </button>

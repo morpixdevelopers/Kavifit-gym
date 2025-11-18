@@ -3,14 +3,14 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // Import facility images from assets folder
 // Images should be named photo1.JPG through photo8.JPG in UI/src/assets/facilities/
-import photo1 from "../assets/facilities/photo1.JPG";
-import photo2 from "../assets/facilities/photo2.JPG";
-import photo3 from "../assets/facilities/photo3.JPG";
-import photo4 from "../assets/facilities/photo4.JPG";
-import photo5 from "../assets/facilities/photo5.JPG";
-import photo6 from "../assets/facilities/photo6.JPG";
-import photo7 from "../assets/facilities/photo7.JPG";
-import photo8 from "../assets/facilities/photo8.JPG";
+import photo1 from "../assets/facilities/photo1.png";
+import photo2 from "../assets/facilities/photo2.png";
+import photo3 from "../assets/facilities/photo3.png";
+import photo4 from "../assets/facilities/photo4.png";
+import photo5 from "../assets/facilities/photo5.png";
+import photo6 from "../assets/facilities/photo6.png";
+import photo7 from "../assets/facilities/photo7.png";
+import photo8 from "../assets/facilities/photo8.png";
 
 const gymImages = [
   {

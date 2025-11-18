@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Dumbbell } from 'lucide-react';
 
 interface HeroProps {
   onJoinClick: () => void;
@@ -6,36 +7,58 @@ interface HeroProps {
 
 export default function Hero({ onJoinClick }: HeroProps) {
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=1920')] bg-cover bg-center bg-fixed">
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/90 via-slate-900/80 to-slate-900/90"></div>
+    <div className="relative min-h-[calc(100vh-64px)] flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=1920')] bg-cover bg-center">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/70 to-slate-900"></div>
       </div>
 
-      <div className="relative z-10 text-center px-4 sm:px-6 md:px-8 max-w-5xl mx-auto">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black text-white mb-6 sm:mb-8 tracking-tight leading-tight">
+      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+        <div className="flex justify-center mb-6 animate-bounce">
+          <Dumbbell className="w-16 h-16 text-orange-500" strokeWidth={2.5} />
+        </div>
+
+        <h1 className="text-3xl md:text-8xl font-black text-white mb-6 tracking-tight">
           TRANSFORM YOUR
           <span className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">
             BODY & MIND
           </span>
         </h1>
 
-        <p className="text-base sm:text-lg md:text-2xl lg:text-3xl text-gray-200 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed font-semibold">
-          Push your limits. Break your barriers. Become the strongest version of
-          yourself.
+        <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+          Push your limits. Break your barriers. Become the strongest version of yourself.
         </p>
 
         <button
           onClick={onJoinClick}
-          className="group relative px-8 sm:px-12 md:px-16 py-3 sm:py-4 md:py-6 bg-gradient-to-r from-orange-500 to-red-600 text-white text-lg sm:text-xl md:text-2xl font-bold rounded-full overflow-hidden shadow-2xl hover:shadow-orange-500/50 transition-all duration-300 hover:scale-105 active:scale-95"
+          className="group relative px-12 py-5 bg-gradient-to-r from-orange-500 to-red-600 text-white text-xl font-bold rounded-full overflow-hidden shadow-2xl hover:shadow-orange-500/50 transition-all duration-300 hover:scale-110 active:scale-95"
         >
-          <span className="relative z-10 flex items-center gap-2 sm:gap-3">
-            START FREE TRIAL
-            <span className="group-hover:translate-x-1 sm:group-hover:translate-x-2 transition-transform duration-300">
-              →
-            </span>
+          <span className="relative z-10 flex items-center gap-3">
+            JOIN US NOW
+            <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
           </span>
           <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </button>
+
+        <div className="mt-20 grid grid-cols-3 gap-8 max-w-3xl mx-auto">
+          <div className="text-center">
+            <div className="text-4xl font-black text-orange-500 mb-2">500+</div>
+            <div className="text-gray-400 text-sm uppercase tracking-wide">Members</div>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-black text-orange-500 mb-2">50+</div>
+            <div className="text-gray-400 text-sm uppercase tracking-wide">Trainers</div>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-black text-orange-500 mb-2">24/7</div>
+            <div className="text-gray-400 text-sm uppercase tracking-wide">Access</div>
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex items-start justify-center p-2">
+          <div className="w-1 h-3 bg-gray-400 rounded-full animate-pulse"></div>
+        </div>
       </div>
     </div>
   );
