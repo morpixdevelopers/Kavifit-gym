@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Check, Calendar } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Check, Calendar, ChevronLeft, ChevronRight } from "lucide-react";
 
 type Plan = {
   duration: string;
@@ -39,6 +39,29 @@ export default function PlansSection({ onJoinClick }: PlansSectionProps) {
   const [phoneError, setPhoneError] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+
+  // Carousel state:
+  const [startIndex, setStartIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(2); // default
+
+  // Set responsive visible count based on window width
+  useEffect(() => {
+    function updateVisible() {
+      const w = window.innerWidth;
+      if (w >= 1024) setVisibleCount(4); // large screens
+      else if (w >= 640) setVisibleCount(2); // small/medium
+      else setVisibleCount(1); // very small
+    }
+    updateVisible();
+    window.addEventListener("resize", updateVisible);
+    return () => window.removeEventListener("resize", updateVisible);
+  }, []);
+
+  // Clamp startIndex whenever visibleCount or plans change
+  useEffect(() => {
+    const maxStart = Math.max(0, plans.length - visibleCount);
+    if (startIndex > maxStart) setStartIndex(maxStart);
+  }, [visibleCount, startIndex]);
 
   const validatePhone = (value: string) => {
     const digits = value.replace(/\D/g, "");
@@ -85,6 +108,7 @@ export default function PlansSection({ onJoinClick }: PlansSectionProps) {
       plan: joinPlan ?? undefined,
       phone: digits,
     };
+    // simulate
     setTimeout(() => {
       setSubmitting(false);
       setSubmitted(true);
@@ -98,10 +122,30 @@ export default function PlansSection({ onJoinClick }: PlansSectionProps) {
     }, 800);
   };
 
+  // Carousel controls
+  const maxStartIndex = Math.max(0, plans.length - visibleCount);
+  const canPrev = startIndex > 0;
+  const canNext = startIndex < maxStartIndex;
+
+  const handlePrev = () => {
+    if (!canPrev) return;
+    // move by visibleCount for page-like movement; change to 1 for single-step
+    const next = Math.max(0, startIndex - visibleCount);
+    setStartIndex(next);
+  };
+
+  const handleNext = () => {
+    if (!canNext) return;
+    const next = Math.min(maxStartIndex, startIndex + visibleCount);
+    setStartIndex(next);
+  };
+
+  const displayedPlans = plans.slice(startIndex, startIndex + visibleCount);
+
   return (
     <section id="packages" className="py-20 px-6 bg-gradient-to-b from-slate-800 to-slate-900">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+      <div className="max-w-7xl mx-auto relative">
+        <div className="text-center mb-12">
           <h2 className="text-4xl md:text-6xl font-black text-white mb-4">
             CHOOSE YOUR{" "}
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600"> MEMBERSHIP </span>
@@ -109,80 +153,111 @@ export default function PlansSection({ onJoinClick }: PlansSectionProps) {
           <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto"> Select the perfect plan to match your fitness goals and lifestyle </p>
         </div>
 
-        {/* <-- Changed grid here: 1 column on xs, 2 columns on small (phone) and up, 4 on large --> */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {plans.map((plan) => {
-            const Icon = plan.icon;
-            return (
-              <div key={plan.duration} className="flex justify-center">
-                
-                {/* <-- Removed fixed max-w-xs so cards can sit side-by-side on small screens.
-                       Optionally you can use "w-full sm:max-w-xs" if you want a cap on slightly larger small screens. --> */}
-                <div
-      
-                  className={`w-full relative bg-white/5 backdrop-blur-sm rounded-3xl p-6 border-2 transition-all duration-300 hover:scale-105 flex flex-col ${
-                    plan.popular ? "border-orange-500 shadow-2xl shadow-orange-500/20" : "border-gray-700 hover:border-gray-600"
-                  }`}
-                >
-                  {plan.popular && (
-                  <div className="absolute -top-7 left-1/2 -translate-x-1/2 px-6 py-2 bg-gradient-to-r from-orange-500 to-red-600 text-white text-sm font-bold rounded-full">
-                    MOST POPULAR
-                  </div>
-                )}
+        {/* Carousel wrapper */}
+        <div className="relative">
+          {/* Left nav */}
+          <button
+            onClick={handlePrev}
+            disabled={!canPrev}
+            aria-label="Previous plans"
+            className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full border border-white/10 backdrop-blur-sm ${
+              canPrev ? "bg-white/5 hover:bg-white/10" : "bg-white/3 opacity-40 cursor-not-allowed"
+            }`}
+          >
+            <ChevronLeft className="w-5 h-5 text-white" />
+          </button>
 
-                {plan.bonus && !plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-2 bg-gradient-to-r from-orange-500 to-red-600 text-white text-sm font-bold rounded-full">
-                    {plan.bonus}
-                  </div>
-                )}
-                    
-                  <div className="text-center mb-8">
-                    <div className={`inline-flex p-3 rounded-2xl bg-gradient-to-br ${plan.color ?? "from-slate-500 to-slate-600"} mb-4`}>
-                      <Icon className="w-6 h-6 text-white" strokeWidth={2.5} />
-                    </div>
-                    <h3 className="text-2xl font-black text-white mb-3">{plan.duration}</h3>
-                    <div className="flex items-end justify-center gap-1">
-                      <span className="text-4xl font-black text-white">₹{plan.price.toLocaleString()}</span>
-                    </div>
-                    {plan.bonus && plan.popular && (
-                    <p className="text-orange-400 text-sm font-bold mt-2">{plan.bonus}</p>
-                  )}
-                </div>
-
-                  <ul className="space-y-3 mb-8 flex-grow">
-                    {features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <div className={`flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-br ${plan.color ?? "from-slate-500 to-slate-600"} flex items-center justify-center mt-0.5`}>
-                          <Check className="w-3 h-3 text-white" strokeWidth={4} />
+          {/* Cards grid */}
+          <div className="overflow-hidden">
+            <div
+              className="grid gap-6 transition-all duration-300"
+              // dynamic grid columns to match visibleCount purely for layout
+              style={
+                {
+                  gridTemplateColumns: `repeat(${visibleCount}, minmax(0, 1fr))`,
+                } as React.CSSProperties
+              }
+            >
+              {displayedPlans.map((plan, idx) => {
+                const Icon = plan.icon;
+                const key = `${plan.duration}-${startIndex + idx}`;
+                return (
+                  <div key={key} className="flex justify-center">
+                    <div
+                      className={`w-full relative bg-white/5 backdrop-blur-sm rounded-3xl p-6 border-2 transition-all duration-300 hover:scale-105 flex flex-col ${
+                        plan.popular ? "border-orange-500 shadow-2xl shadow-orange-500/20" : "border-gray-700 hover:border-gray-600"
+                      }`}
+                    >
+                      {plan.popular && (
+                        <div className="absolute -top-2 left-1/2 -translate-x-1/2 px-6 py-2 bg-gradient-to-r from-orange-500 to-red-600 text-white text-sm font-bold rounded-full">
+                          MOST POPULAR
                         </div>
-                        <span className="text-gray-300 text-sm leading-snug">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                      )}
 
-                  <button
-                    onClick={() => openJoinPopupFromCard(plan)}
-                    className={`w-full py-3 bg-gradient-to-r ${plan.color ?? "from-slate-500 to-slate-600"} text-white font-bold rounded-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95`}
-                  >
-                    JOIN NOW
-                  </button>
-                </div>
-              </div>
-            );
-          })}
+                      {plan.bonus && !plan.popular && (
+                        <div className="absolute -top-2 left-1/2 -translate-x-1/2 px-6 py-2 bg-gradient-to-r from-orange-500 to-red-600 text-white text-sm font-bold rounded-full">
+                          {plan.bonus}
+                        </div>
+                      )}
+
+                      <div className="text-center mb-8">
+                        <div className={`inline-flex p-3 rounded-2xl bg-gradient-to-br ${plan.color ?? "from-slate-500 to-slate-600"} mb-4`}>
+                          <Icon className="w-6 h-6 text-white" strokeWidth={2.5} />
+                        </div>
+                        <h3 className="text-2xl font-black text-white mb-3">{plan.duration}</h3>
+                        <div className="flex items-end justify-center gap-1">
+                          <span className="text-4xl font-black text-white">₹{plan.price.toLocaleString()}</span>
+                        </div>
+                        {plan.bonus && plan.popular && <p className="text-orange-400 text-sm font-bold mt-2">{plan.bonus}</p>}
+                      </div>
+
+                      <ul className="space-y-3 mb-8 flex-grow">
+                        {features.map((feature, fIdx) => (
+                          <li key={fIdx} className="flex items-start gap-2">
+                            <div className={`flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-br ${plan.color ?? "from-slate-500 to-slate-600"} flex items-center justify-center mt-0.5`}>
+                              <Check className="w-3 h-3 text-white" strokeWidth={4} />
+                            </div>
+                            <span className="text-gray-300 text-sm leading-snug">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <button
+                        onClick={() => openJoinPopupFromCard(plan)}
+                        className={`w-full py-3 bg-gradient-to-r ${plan.color ?? "from-slate-500 to-slate-600"} text-white font-bold rounded-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95`}
+                      >
+                        JOIN NOW
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right nav */}
+          <button
+            onClick={handleNext}
+            disabled={!canNext}
+            aria-label="Next plans"
+            className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full border border-white/10 backdrop-blur-sm ${
+              canNext ? "bg-white/5 hover:bg-white/10" : "bg-white/3 opacity-40 cursor-not-allowed"
+            }`}
+          >
+            <ChevronRight className="w-5 h-5 text-white" />
+          </button>
         </div>
 
-        <div className="text-center">
+        <div className="text-center mt-8">
           <button
             onClick={() => setShowModal(true)}
             className="px-3 lg:px-10 py-2.5 lg:py-4 bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold rounded-full text-xs lg:text-sm hover:shadow-lg hover:shadow-orange-500/50 transition-all duration-300 hover:scale-105 active:scale-95 whitespace-nowrap"
-
-
           >
             PERSONAL TRAINING OPTIONS
           </button>
         </div>
 
+        {/* Personal training modal (unchanged) */}
         {showModal && (
           <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-6 z-50">
             <div className="bg-slate-900 rounded-3xl p-8 max-w-2xl w-full relative border border-white/10">
@@ -267,6 +342,7 @@ export default function PlansSection({ onJoinClick }: PlansSectionProps) {
           </div>
         )}
 
+        {/* Join popup unchanged */}
         {showJoinPopup && joinPlan && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <div className="absolute inset-0 bg-black/60" onClick={() => setShowJoinPopup(false)} />

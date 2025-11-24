@@ -41,16 +41,16 @@ export default function Hero({ onJoinClick }: HeroProps) {
 
         <div className="mt-20 grid grid-cols-3 gap-8 max-w-3xl mx-auto">
           <div className="text-center">
-            <div className="text-4xl font-black text-orange-500 mb-2">500+</div>
+            <div className="text-4xl font-black text-orange-500 mb-2">100+</div>
             <div className="text-gray-400 text-sm uppercase tracking-wide">Members</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-black text-orange-500 mb-2">50+</div>
-            <div className="text-gray-400 text-sm uppercase tracking-wide">Trainers</div>
+            <div className="text-4xl font-black text-orange-500 mb-2">20+</div>
+            <div className="text-gray-400 text-sm uppercase tracking-wide">Equipments</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-black text-orange-500 mb-2">24/7</div>
-            <div className="text-gray-400 text-sm uppercase tracking-wide">Access</div>
+            <div className="text-4xl font-black text-orange-500 mb-2">2+</div>
+            <div className="text-gray-400 text-sm uppercase tracking-wide">Trainers</div>
           </div>
         </div>
       </div>
@@ -155,145 +155,145 @@ export function TransformationGallery() {
 
   const currentMember = memberReviews[currentIndex];
 
-  return (
-    <section
-      id="transformation"
-      className="py-16 sm:py-20 px-4 sm:px-6 bg-gradient-to-b from-slate-900 via-slate-800/50 to-slate-900"
-    >
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3">
-            MEMBER
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">
-              TRANSFORMATIONS
-            </span>
-          </h2>
-          <p className="text-sm sm:text-lg text-gray-400 max-w-2xl mx-auto">
-            Inspiring results from people like you who transformed their lives
-          </p>
-        </div>
+//   return (
+//     <section
+//       id="transformation"
+//       className="py-16 sm:py-20 px-4 sm:px-6 bg-gradient-to-b from-slate-900 via-slate-800/50 to-slate-900"
+//     >
+//       <div className="max-w-7xl mx-auto">
+//         <div className="text-center mb-12 sm:mb-16">
+//           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3">
+//             MEMBER
+//             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">
+//               TRANSFORMATIONS
+//             </span>
+//           </h2>
+//           <p className="text-sm sm:text-lg text-gray-400 max-w-2xl mx-auto">
+//             Inspiring results from people like you who transformed their lives
+//           </p>
+//         </div>
 
-        {/* Split Page Layout: Left Image, Right Review - Responsive heights */}
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
-          {/* Left Side - Transformation Image/Video */}
-          <div className="relative group rounded-3xl overflow-hidden border-2 border-orange-500/30 bg-black h-64 sm:h-80 md:h-[420px] lg:h-[500px]">
-            <img
-              src={currentMember.transformation.url}
-              alt={currentMember.transformation.title}
-              className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
-              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8">
-                <h3 className="text-white text-lg sm:text-2xl font-bold mb-1">
-                  {currentMember.transformation.title}
-                </h3>
-                <p className="text-orange-400 text-sm sm:text-base font-semibold">
-                  Transformation Period: {currentMember.transformation.duration}
-                </p>
-              </div>
-            </div>
-          </div>
+//         {/* Split Page Layout: Left Image, Right Review - Responsive heights */}
+//         <div className="grid md:grid-cols-2 gap-6 mb-8">
+//           {/* Left Side - Transformation Image/Video */}
+//           <div className="relative group rounded-3xl overflow-hidden border-2 border-orange-500/30 bg-black h-64 sm:h-80 md:h-[420px] lg:h-[500px]">
+//             <img
+//               src={currentMember.transformation.url}
+//               alt={currentMember.transformation.title}
+//               className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+//             />
+//             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
+//               <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8">
+//                 <h3 className="text-white text-lg sm:text-2xl font-bold mb-1">
+//                   {currentMember.transformation.title}
+//                 </h3>
+//                 <p className="text-orange-400 text-sm sm:text-base font-semibold">
+//                   Transformation Period: {currentMember.transformation.duration}
+//                 </p>
+//               </div>
+//             </div>
+//           </div>
 
-          {/* Right Side - Customer Review */}
-          <div className="bg-white/5 backdrop-blur-sm rounded-3xl border-2 border-orange-500/30 p-6 sm:p-8 md:p-12 flex flex-col justify-center h-64 sm:h-80 md:h-[420px] lg:h-[500px]">
-            <div className="flex items-center gap-4 sm:gap-6 mb-4 sm:mb-6">
-              <img
-                src={currentMember.image}
-                alt={currentMember.name}
-                className="w-14 h-14 sm:w-20 sm:h-20 rounded-full object-cover border-2 sm:border-3 border-orange-500"
-              />
-              <div>
-                <h3 className="text-lg sm:text-2xl font-black text-white mb-1">
-                  {currentMember.name}
-                </h3>
-                <p className="text-orange-400 font-bold text-xs sm:text-base mb-2">
-                  {currentMember.role}
-                </p>
-                <div className="flex gap-1 text-sm">
-                  {Array.from({ length: currentMember.rating }).map((_, i) => (
-                    <span key={i}>⭐</span>
-                  ))}
-                </div>
-              </div>
-            </div>
+//           {/* Right Side - Customer Review */}
+//           <div className="bg-white/5 backdrop-blur-sm rounded-3xl border-2 border-orange-500/30 p-6 sm:p-8 md:p-12 flex flex-col justify-center h-64 sm:h-80 md:h-[420px] lg:h-[500px]">
+//             <div className="flex items-center gap-4 sm:gap-6 mb-4 sm:mb-6">
+//               <img
+//                 src={currentMember.image}
+//                 alt={currentMember.name}
+//                 className="w-14 h-14 sm:w-20 sm:h-20 rounded-full object-cover border-2 sm:border-3 border-orange-500"
+//               />
+//               <div>
+//                 <h3 className="text-lg sm:text-2xl font-black text-white mb-1">
+//                   {currentMember.name}
+//                 </h3>
+//                 <p className="text-orange-400 font-bold text-xs sm:text-base mb-2">
+//                   {currentMember.role}
+//                 </p>
+//                 <div className="flex gap-1 text-sm">
+//                   {Array.from({ length: currentMember.rating }).map((_, i) => (
+//                     <span key={i}>⭐</span>
+//                   ))}
+//                 </div>
+//               </div>
+//             </div>
 
-            <div className="relative">
-              <div className="absolute -top-3 -left-3 text-orange-500/20 text-4xl sm:text-6xl font-black">
-                "
-              </div>
-              <p className="text-sm sm:text-lg md:text-xl text-gray-300 leading-relaxed italic relative z-10">
-                "{currentMember.text}"
-              </p>
-            </div>
-          </div>
-        </div>
+//             <div className="relative">
+//               <div className="absolute -top-3 -left-3 text-orange-500/20 text-4xl sm:text-6xl font-black">
+//                 "
+//               </div>
+//               <p className="text-sm sm:text-lg md:text-xl text-gray-300 leading-relaxed italic relative z-10">
+//                 "{currentMember.text}"
+//               </p>
+//             </div>
+//           </div>
+//         </div>
 
-        {/* Pagination Controls */}
-        <div className="flex items-center justify-center gap-4 sm:gap-6">
-          <button
-            onClick={prevTransformation}
-            className="p-3 sm:p-4 bg-orange-500 hover:bg-orange-600 text-white rounded-full transition-all duration-300 hover:scale-105 active:scale-95 shadow-md"
-            aria-label="Previous transformation"
-          >
-            <svg
-              className="w-4 sm:w-6 h-4 sm:h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
+//         {/* Pagination Controls */}
+//         <div className="flex items-center justify-center gap-4 sm:gap-6">
+//           <button
+//             onClick={prevTransformation}
+//             className="p-3 sm:p-4 bg-orange-500 hover:bg-orange-600 text-white rounded-full transition-all duration-300 hover:scale-105 active:scale-95 shadow-md"
+//             aria-label="Previous transformation"
+//           >
+//             <svg
+//               className="w-4 sm:w-6 h-4 sm:h-6"
+//               fill="none"
+//               stroke="currentColor"
+//               viewBox="0 0 24 24"
+//             >
+//               <path
+//                 strokeLinecap="round"
+//                 strokeLinejoin="round"
+//                 strokeWidth={2}
+//                 d="M15 19l-7-7 7-7"
+//               />
+//             </svg>
+//           </button>
 
-          <div className="flex gap-2">
-            {memberReviews.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentIndex(idx)}
-                className={`h-2 sm:h-3 rounded-full transition-all duration-300 ${
-                  idx === currentIndex
-                    ? "w-8 sm:w-12 bg-orange-500"
-                    : "w-2 sm:w-3 bg-gray-600 hover:bg-gray-500"
-                }`}
-                aria-label={`Go to transformation ${idx + 1}`}
-              />
-            ))}
-          </div>
+//           <div className="flex gap-2">
+//             {memberReviews.map((_, idx) => (
+//               <button
+//                 key={idx}
+//                 onClick={() => setCurrentIndex(idx)}
+//                 className={`h-2 sm:h-3 rounded-full transition-all duration-300 ${
+//                   idx === currentIndex
+//                     ? "w-8 sm:w-12 bg-orange-500"
+//                     : "w-2 sm:w-3 bg-gray-600 hover:bg-gray-500"
+//                 }`}
+//                 aria-label={`Go to transformation ${idx + 1}`}
+//               />
+//             ))}
+//           </div>
 
-          <button
-            onClick={nextTransformation}
-            className="p-3 sm:p-4 bg-orange-500 hover:bg-orange-600 text-white rounded-full transition-all duration-300 hover:scale-105 active:scale-95 shadow-md"
-            aria-label="Next transformation"
-          >
-            <svg
-              className="w-4 sm:w-6 h-4 sm:h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-        </div>
+//           <button
+//             onClick={nextTransformation}
+//             className="p-3 sm:p-4 bg-orange-500 hover:bg-orange-600 text-white rounded-full transition-all duration-300 hover:scale-105 active:scale-95 shadow-md"
+//             aria-label="Next transformation"
+//           >
+//             <svg
+//               className="w-4 sm:w-6 h-4 sm:h-6"
+//               fill="none"
+//               stroke="currentColor"
+//               viewBox="0 0 24 24"
+//             >
+//               <path
+//                 strokeLinecap="round"
+//                 strokeLinejoin="round"
+//                 strokeWidth={2}
+//                 d="M9 5l7 7-7 7"
+//               />
+//             </svg>
+//           </button>
+//         </div>
 
-        <div className="text-center mt-4">
-          <p className="text-gray-400 text-xs sm:text-sm">
-            {currentIndex + 1} of {memberReviews.length}
-          </p>
-        </div>
-      </div>
-    </section>
-  );
+//         <div className="text-center mt-4">
+//           <p className="text-gray-400 text-xs sm:text-sm">
+//             {currentIndex + 1} of {memberReviews.length}
+//           </p>
+//         </div>
+//       </div>
+//     </section>
+//   );
 }
 
 const testimonials = [

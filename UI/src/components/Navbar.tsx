@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Dumbbell } from "lucide-react";
+import img from "../assets/facilities/logo.png";
 
 interface NavbarProps {
   onHomeClick: () => void;
@@ -28,19 +29,20 @@ export default function Navbar({
             onHomeClick();
           }}
         >
-          <div className="p-2 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg">
-            <Dumbbell
-              className="w-5 h-5 sm:w-6 sm:h-6 text-white"
-              strokeWidth={3}
-            />
-          </div>
+        
+        <img
+  src={img}
+  alt="Kavifit Logo"
+  className="w-10 h-10 sm:w-10 sm:h-10 object-cover rounded-lg"
+/>
+
 
           {/* Brand: visible on all sizes; compact on mobile, larger on sm+ */}
           <div className="flex flex-col">
             <h1 className="text-xs sm:text-xl font-black text-white tracking-wider leading-none">
               KAVIFIT
             </h1>
-            <p className="text-[9px] sm:text-xs text-orange-400 font-bold -mt-1">
+            <p className="text-[9px] sm:text-xs text-orange-400 font-bold">
               UNISEX GYM
             </p>
           </div>
