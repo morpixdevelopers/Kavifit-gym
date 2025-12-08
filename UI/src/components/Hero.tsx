@@ -41,7 +41,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
 
         <div className="mt-20 grid grid-cols-3 gap-8 max-w-3xl mx-auto">
           <div className="text-center">
-            <div className="text-4xl font-black text-orange-500 mb-2">100+</div>
+            <div className="text-4xl font-black text-orange-500 mb-2">200+</div>
             <div className="text-gray-400 text-sm uppercase tracking-wide">Members</div>
           </div>
           <div className="text-center">
